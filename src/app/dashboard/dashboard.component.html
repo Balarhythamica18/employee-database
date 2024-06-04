@@ -1,0 +1,339 @@
+<div class="justify-content-between align-items-center vh-100">
+    <app-header></app-header>
+  
+  <div class="flex-grow-1 m-3 m-lg-5">
+  
+      <div *ngIf="showSuccessMessage" class="success-message  bg-success bg-gradient">
+        Employee added successfully!
+      </div>
+  
+      <div class="row">
+        <div class="col-md-2">
+          <div class="employee-count text-light fw-bold">
+            <i class="fas fa-users me-2"></i>Total Employees: {{ employees.length }}
+          </div>
+        </div>
+      </div>
+      
+  
+  
+      
+        <div class="main" [style.min-height.px]="calculateMinHeight()">
+          <div class="head">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="input-group mb-3 col-md-4">
+                   <input type="text" class="form-control fs-md-5" placeholder="Search employee" [(ngModel)]="searchTerm"
+                    (input)="updateFilteredEmployees()" title="search">
+                      <img src="assets/download.png" height="20px" width="20px">
+                </div>
+              </div>
+              <div class="col-md-9 text-end">
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#myModal" title="add employee">
+                  <i class="fas fa-user-plus"></i> 
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+          
+          
+          
+         <div class="table-responsive overflow-x-auto">
+          <table class="table table-bordered text-center mx-auto">
+            <thead class="table text-light">
+              <tr>
+                <th>S.No</th>
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('id')" title="Sort">
+                    <i class="fas fa-arrow-up"> </i> <i class="fas fa-arrow-down"></i>
+                  </button> ID
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('name')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> NAME
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('dob')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> DATE OF BIRTH
+                </th>
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('gender')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> GENDER
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('email')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> E-MAIL ADDRESS
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('address')" title="Sort">
+                    <i class="fas fa-arrow-down"></i> <i class="fas fa-arrow-up"></i>
+                  </button> OFFICE ADDRESS
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('doj')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button>DATE OF JOINING
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('designation')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> DESIGNATION
+                </th>
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('projectName')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> PROJECT NAME
+                </th>
+  
+                <th>
+                  <button class="sort-btn" (click)="toggleSortOrder('location')" title="Sort">
+                    <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i>
+                  </button> LOCATION
+                </th>
+  
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody class="table-light">
+              <ng-container *ngIf="filteredEmployees.length >0 || searchTerm === ''">
+                <tr *ngFor="let employee of paginatedEmployees; let i=index">
+                  <td> {{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+                  <td>{{employee.id}}</td>
+                  <td>{{employee.name}}</td>
+                  <td>{{employee.dob}}</td>
+                  <td>{{employee.gender}}</td>
+                  <td>{{employee.email}}</td>
+                  <td>{{employee.address}}</td>
+                  <td>{{employee.doj}}</td>
+                  <td>{{employee.designation}}</td>
+                  <td>{{employee.projectName}}</td>
+                  <td>{{employee.location}}</td>
+                  <td>
+                    <app-edit-employee [employee]="employee" (employeeUpdated)="updateEmployee($event)"></app-edit-employee>
+  
+                   <app-det-employee  [employee]="employee" (deleteConfirmed)="deleteEmployee($event)"></app-det-employee>
+                    <button class="btn btn-primary ms-2 me-2" (click)="viewEmployeeDetails(employee)" title="view">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+  
+                </tr>
+  
+              </ng-container>
+              <ng-container *ngIf="filteredEmployees.length === 0 && searchTerm !== ''">
+                <tr>
+                  <td class="norecords" colspan="12">No records found!</td>
+                </tr>
+              </ng-container>
+  
+            </tbody>
+          </table>
+        </div>
+          
+        
+       
+  
+          <div class="pagination">
+            <div class="pagination-options">
+              <label for="itemsPerPage" class="text-light">Items Per Page: </label>
+              <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+                <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
+              </select>
+            </div>
+                
+            <div class="pagination-controls">
+              <button class="arrow" (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">
+                <i class="fas fa-chevron-left"></i> 
+              </button>
+              <span *ngFor="let page of totalPagesArray">
+                <button (click)="onPageChange(page)" [class.active]="currentPage === page">{{ page }}</button>
+              </span>
+              <button class="arrow" (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages">
+                <i class="fas fa-chevron-right"></i> 
+              </button>
+            </div>
+          </div>
+          
+          
+          
+      
+        
+  
+  
+      </div>
+    </div>
+  
+  
+  
+  
+  
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="header d-flex  bg text-light justify-content-between p-2 ">
+            <h5 class="modal-title fs-3 p-0" id="myModalLabel">Add Employee</h5>
+            <button type="button" class="btn-close  bg-light bg p-3 " data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="center p-0">
+            <form [formGroup]="addbtn"  autocomplete="off">
+  
+              <div *ngIf="iderror" class="iderror">
+                
+                <div class="texterror">
+                *Id already Exist! please try with different one</div>
+                <div class="cancel">
+                  <i class="fas fa-times" (click)="cancel()"></i></div>
+               
+              </div>
+  
+              <div class="form-group">
+                <label>Id :</label>
+                <input type="text" class="form-control" id="id" placeholder="ID *" name="id" required formControlName="id" #idField (ngModelChange)="checkForDuplicateId()">
+                 
+                <div class="form-text text-danger" *ngIf="id.errors?.['required'] && (id.touched || id.dirty)">
+                  *ID is Required.
+                </div>
+                
+                <div class="form-text text-danger" *ngIf="id.errors?.['pattern'] && (id.touched || id.dirty)">
+                  *ID must only be a number.
+                </div>
+  
+               
+              </div>
+  
+  
+  
+  
+              <div class="form-group">
+                <label>Name : </label>
+                <input type="text" class="form-control" id="name" placeholder="Enter Your Name *" name="name" required
+                  formControlName="name">
+                <div class=" form-text text-danger" *ngIf="name.errors?.['required']&&(name.touched || name.dirty)">
+                  *Name is Required.
+                </div>
+                <div class="form-text text-danger" *ngIf="name.errors?.['pattern']&&(name.touched || name.dirty)">
+                  *Name must be alphabet.</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Date of Birth : </label>
+                <input type="date" class="form-control" id="dob" placeholder="Date Of Birth *" name="dob" required
+                  formControlName="dob" [max]="getMaxDate()">
+                <div class=" form-text text-danger" *ngIf="dob.errors?.['required']&&(dob.touched || dob.dirty)">
+                  *Date of Birth is Required.</div>
+              </div>
+  
+              <div class="form-group" id="gender" name="gender">
+                <label class="gender">Gender : </label>
+                <input type="radio" name="gender" value="male" formControlName="gender" required> Male
+                <input type="radio" name="gender" value="female" formControlName="gender" required> Female
+                <input type="radio" name="gender" value="other" formControlName="gender" required> Other
+                <div class="form-text text-danger"
+                  *ngIf="!addbtn.controls['gender'].valid && addbtn.controls['gender'].touched">
+                  *Gender is Required.</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Address : </label>
+                <textarea class="form-control" id="address" placeholder="Enter Your Address *" name="address" required
+                  formControlName="address"></textarea>
+                <div class=" form-text text-danger"
+                  *ngIf="address.errors?.['required']&&(address.dirty || address.touched)">
+                  *address is Required.</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Date of Joining : </label>
+                <input type="date" class="form-control" id="doj" placeholder="Date Of Joining *" name="doj" required
+                  formControlName="doj" [min]="getCurrentDate()">
+                <div class=" form-text text-danger" *ngIf="doj.errors?.['required']&&(doj.touched || doj.dirty)">
+                  *Date of Joining is Required.</div>
+              </div>
+  
+              <div class="form-group">
+                <label>E-mail : </label>
+                <input type="text" class="form-control" id="email" placeholder="Enter Your email *" email="name" required
+                  formControlName="email">
+                <div class=" form-text text-danger" *ngIf="email.errors?.['required']&&(email.touched || email.dirty)">
+                  *Email is Required.
+                </div>
+                <div class="form-text text-danger" *ngIf="email.errors?.['pattern']&&(email.touched || email.dirty)">
+                  *Invalid Format.</div>
+              </div>
+  
+              <div class="form-group">
+                <label>Select Designation : </label>
+                <select class="form-control" id="designation" name="designation" placeholder="Select Your designation *"
+                  required formControlName="designation">
+                  <option value="" disabled selected>Select Designation *</option>
+                  <option value="Python Developer">Python Developer</option>
+                  <option value="UI Developer">UI Developer</option>
+                  <option value="Java Developer">Java Developer</option>
+                </select>
+                <div class="form-text text-danger"
+                  *ngIf="designation.errors?.['required'] && (designation.dirty || designation.touched)">
+                  *Designation is Required.
+                </div>
+              </div>
+  
+  
+              <div class="form-group">
+                <label>Project Name : </label>
+                <input type="text" class="form-control" id="projectName" placeholder="Enter Your Project Name *"
+                  name="projectName" required formControlName="projectName">
+                <div class=" form-text text-danger"
+                  *ngIf="projectName.errors?.['required']&&(projectName.touched || projectName.dirty)">
+                  *Project Name is Required.
+                </div>
+              </div>
+  
+  
+              <!---  <div class="form-group">
+                <input ngx-google-places-autocomplete type="text" class="form-control" id="location" placeholder="location *"
+                       name="location" required formControlName="location" (onAddressChange)="AddressChange($event)"/>
+                {{ formattedaddress }}
+                <div class="form-text text-danger" *ngIf="location.errors?.['required'] && (location.touched || location.dirty)">
+                  *location is Required.
+                </div>
+              </div>-->
+  
+              <div class="form-group">
+                <label>Location : </label>
+                <input type="text" class="form-control" id="location" placeholder="Enter Your location *" name="location"
+                  required formControlName="location">
+                <div class="form-text text-danger"
+                  *ngIf="location.errors?.['required'] && (location.touched || location.dirty)">
+                  *location is Required.
+                </div>
+              </div>
+  
+  
+            </form>
+  
+          </div>
+  
+          <div class="p-2 text-end">
+            <button type="button"  (click)="clearform()" class="btn btn-danger p-2">Clear</button>
+            <button (click)="addEmployee()" type="submit" [disabled]="addbtn.invalid || iderror" 
+            class="btn bg p-2 ms-2 text-light">Submit</button>
+          </div>
+        </div>
+      </div>
+  
+  
+    </div>
+  
+  

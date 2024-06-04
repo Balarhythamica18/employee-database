@@ -1,0 +1,15 @@
+i{
+    margin:0px;
+    padding:0px;}
+    .footer{
+        text-align: right;
+    }
+    .footer button{
+        padding:5px;
+        margin:2px;
+    }
+    .modal-content{
+        background-color:#ecf0f1;
+    }
+    p{text-align:left; font-weight: bold;}
+    .bg{background-color: #130f40;}

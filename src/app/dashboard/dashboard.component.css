@@ -1,0 +1,261 @@
+
+.form-group{
+    padding:8px;
+    border:none;
+    margin:4px;
+  }
+  .form-group input,select{
+     border:none;
+     outline:none;
+     border-bottom: 1px solid grey;
+  }
+  .form-group gender{
+     border-bottom:1px solid grey;
+  }
+  .center {
+     height: 400px; 
+     overflow-y: auto; 
+     background: rgba(255, 255, 255, 0.5);
+   }
+   .bg{background-color: #130f40;}
+   
+   .table{background-color: #273c75; margin-top:1%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+   }
+   
+  
+  
+  
+   .alert{
+     border:1px solid #130f40;
+     background-color:  #130f40;
+     width:250px;
+     color:white;
+     padding:10px;
+     font-weight: bold;
+     text-align: center;
+     margin-left:42%; margin-top:20%;
+  }
+  
+  /*.success{
+     border:1px solid green;
+     background-color:  green;
+     width:250px;
+     color:white;
+     padding:10px;
+     font-weight: bold;
+     text-align: center;
+     margin-left:42%; margin-top:20%;
+  }
+  */
+  
+  .input-group{position: relative;}
+  .input-group img{
+  position:absolute;
+  right:4px;
+  top:7px;
+  }
+  .input-group input{
+  font-weight: bold;
+  }
+  label{
+   font-weight: bold;
+  }
+  .main {
+  position: relative;
+  border: 1px solid #334d50;
+  padding:30px 20px;
+  background: #334d50;
+  background: -webkit-linear-gradient(to right, #cbcaa5, #334d50);
+  background: linear-gradient(to right, #cbcaa5, #334d50);
+  border-radius: 20px;
+  height: auto;
+  width: 100%;
+  margin-top: 40px;
+  }
+  
+  .norecords{
+     text-align: center;
+     padding: 50px; 
+     background-color: #fff; 
+     color: #721c24; 
+     font-weight: bold;
+     font-size: larger; 
+   }
+   .success-message {
+     background-color: #4caf50;
+     color: white;
+     padding: 10px 20px;
+     border-radius: 5px;
+     position: fixed;
+     top: 100px;
+     right: 20px;
+     z-index:2000;
+   }
+   .sort-btn {
+     border: none;
+     background: none;
+     cursor: pointer;
+     padding:0px 0.5px;
+     margin: 0;
+     color: #fff; 
+     font-size:9px; 
+     display: none; 
+  }
+  
+  th:hover .sort-btn {
+     display: inline-block; 
+  }
+  .iderror{
+   position:absolute;
+     background-color: #ffe6e6; 
+     border: 1px solid #ff9999; 
+     padding:5px;
+     border-radius: 5px;
+     display: inline-block;
+     left:40%;
+     top:70px;
+     display: flex;
+     justify-content: space-between;
+     height:70px; width:250px;
+    
+   }
+   
+   
+   .iderror span {
+     margin-right: 10px;
+   }
+   
+   .iderror i{
+     background-color: transparent; /* Transparent background */
+     border: none;
+     cursor: pointer;
+     color: red;
+     border:1px solid  #ff9999;
+     padding:5px;
+   }
+   
+   .iderror i:hover {
+     color: #cc0000; /* Darker red text color on hover */
+   }
+   
+   .iderror i {
+     margin-right: 5px; /* Add some space between the icon and text */
+   }
+   
+   
+   .pagination {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+    padding:10px;
+  }
+  
+  .pagination-options {
+    margin-right: 20px;
+  }
+  
+  .pagination-controls button {
+    padding: 5px 10px; /* Adding padding */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin:2px;
+  }
+  
+  .pagination-controls button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .pagination-controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagination-controls .active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  /* Styling for select dropdown */
+  .pagination-options select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Styling for select label */
+  .pagination-options label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .main {
+    position: relative;
+    border: 1px solid #334d50;
+    padding:30px 20px;
+    background: #334d50;
+    background: -webkit-linear-gradient(to right, #cbcaa5, #334d50);
+    background: linear-gradient(to right, #cbcaa5, #334d50);
+    border-radius: 20px;
+    height: auto;
+    width: 100%;
+    margin-top: 40px;
+  }
+  
+  
+  
+  
+   
+  .employee-count {
+    background-color: #273c75; margin-top:1%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px; 
+    text-align: center; 
+    font-weight: bold; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+  }
+  .employee-count i{
+    color:#ccc;
+  }
+  
+  
+  
+  
+  @media (max-width: 768px) {
+    .pagination {
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .pagination-controls {
+        margin-top: 20px;
+    }
+  
+    .pagination-options {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   

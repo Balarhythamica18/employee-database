@@ -1,0 +1,125 @@
+.bg{ background: #2b5876; 
+    background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  
+    background: linear-gradient(to right, #4e4376, #2b5876); 
+
+ }    
+.form-bg{background-color: #fff; }
+
+.bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user{color: #2b5876;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;}
+
+  .container-lg {
+    width: 400px; 
+    margin: auto;
+   height:420px;
+    border-radius:20px;
+    position:relative;
+  }
+
+  
+  .d-grid.login-button {
+    position: absolute;
+    bottom: 20px; 
+    width: 50%; 
+    left: 25%;
+    z-index: 999; 
+    bottom:16%;
+  }
+  
+  .btn.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  .btn {
+    background-color: #2b5876; 
+    color: #fff; 
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .btn:hover {
+    background-color:  #2b5876;;
+  }
+  
+.username, .mb-3 {
+    position: relative;
+  }
+  
+
+  .uname.form-text,
+  .form-text.text-danger.fs-6 {
+    position: absolute;
+    bottom: -1.5rem;
+  }
+  
+  
+  .form-text.text-danger.fs-6 {
+    color: red;
+    font-size: x-small;
+  }
+  
+
+  .d-grid {
+    position: relative;
+    margin-top: 2rem; 
+  }
+  input{
+    width:100%;
+    position:relative;
+    border-radius:0;
+    outline:none;
+}
+
+
+.input-group .input-group-text {
+    position: absolute;
+    right: 10px;
+    top:10px;
+    padding:1px;
+    z-index: 2000;
+    background-color: #fff;
+    border:none;
+    color:black;
+  }
+  
+  .form-control {
+    padding-right: 2.5rem; 
+  }
+  
+  
+  .invalid.pop {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Style the icon in the invalid user popup */
+  .invalid.pop i {
+    margin-right: 0.5rem;
+  }
+ 
+  
+  
+  .mistake{
+    font-size:12px;
+    font-weight: bold;
+  }

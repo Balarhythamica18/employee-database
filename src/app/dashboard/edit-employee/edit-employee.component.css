@@ -1,0 +1,61 @@
+.bg{background-color: #130f40;}
+
+form {
+    width:450px;
+    margin:2px auto;
+  }
+  
+  
+  .form-group {
+    
+    margin-bottom:5px;
+  }
+  
+  .text-danger {
+    color: red;
+    margin-top: 4px;
+    text-align: left;
+  }
+  
+  label {
+    margin-left:2px;
+    font-weight: bolder;
+    display: flex;
+    margin-bottom: 3px;
+  }
+  
+
+  input[type="text"],
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
+    margin-top:5px;
+    margin-right:5px;
+    margin-bottom: 2px;
+    border:none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  #gender input {
+    margin-right: 5px;
+  }
+
+  textarea{width:100%;}
+  
+
+  .form-text {
+    font-size: 6px;
+    color: #dc3545; 
+    margin-top: 5px;
+  }
+  
+  
+  .center {
+    height: 400px; 
+    overflow-y: auto; 
+    background: rgba(255, 255, 255, 0.5);
+  }

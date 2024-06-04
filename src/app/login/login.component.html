@@ -1,0 +1,68 @@
+
+<div class="bg vw-100">
+    <div class="d-flex justify-content-center align-items-center vh-100 vw-100">
+
+<form [formGroup]="loginForm" (ngSubmit)="loginSubmitted()" class="form-bg need-validated p-5 m-5  container-lg" autocomplete="off"><div class="user"><i class="fa fa-user circle-icon" aria-hidden="true"></i></div>
+    <div class="mb-3 mt-3 username">
+      <label for="uname" class="form-label text-light"></label>
+      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required formControlName="uname">
+       <div class="uname form-text text-danger mistake"
+        *ngIf="uname.errors?.['required']&&(uname.touched || uname.dirty) ">
+        *Username is Required.
+      </div>
+       <div class="form-text text-danger  mistake" 
+         *ngIf="uname.errors?.['pattern']&&(uname.touched || uname.dirty)">
+         *First character must be alphabet.
+        </div></div>
+    
+        
+          <label for="pwd" class="form-label text-light pt-2">Password</label>
+          <div class="input-group">
+            <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="pwd" placeholder="Enter password" name="pswd" [formControl]="pwd">
+            <span class="input-group-text" (click)="showPassword = !showPassword">
+              <i class="fa fa-eye" [ngClass]="{'fa-eye-slash': showPassword, 'fa-eye': !showPassword}"></i>
+            </span>
+          </div>
+         
+          <div class="form-text text-danger mistake" *ngIf="pwd.errors?.['required'] && (pwd.touched || pwd.dirty)">
+            * Password is Required
+          </div>
+          <div class="form-text text-danger mistake" *ngIf="pwd.errors?.['pattern'] && pwd.touched && !pwd.errors?.['required'] && !pwd.errors?.['minlength']">
+            * Password must contain at least one letter,one digit, and one special character
+          </div>
+          <div class="form-text text-danger mistake" *ngIf="pwd.errors?.['minlength'] && pwd.touched && !pwd.errors?.['required'] && pwd.errors?.['pattern']">
+            * Password should be at least 8 characters
+          </div>
+         
+
+        
+        
+
+     
+  
+        
+        
+        
+   <div class="row mt-5">
+    <div class="col-6 offset-3">
+   
+      <div class="d-grid login-button">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn p-1 text-light fw-bold">Login</button>
+      </div>  
+    </div>
+   </div>
+  
+  </form>
+
+   
+  
+  
+  </div>
+  </div>
+  <div>
+    <div *ngIf="showInvalidUserPopup" class="invalid pop">
+      <p><i class="fas fa-exclamation-triangle"></i> Invalid username or password. Please try again.</p>
+    </div>
+   </div>
+
+

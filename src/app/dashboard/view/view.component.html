@@ -1,0 +1,57 @@
+<div class="main">
+
+    <app-header></app-header>
+  
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header text-light">
+  
+                <h2 class="m-0">Employee details</h2>
+                <button (click)="back()" class="back-btn" title="back">
+                  <i class="fas fa-arrow-left"></i> 
+              </button>
+            </div>
+            <div class="card-body">
+                <div *ngIf="employee">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="text-light">Personal Details</h3>
+                            
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>Name:</strong> {{ employee.name }}</li>
+                                <li class="list-group-item"><strong>Date Of Birth:</strong> {{ employee.dob }}</li>
+                                <li class="list-group-item"><strong>Gender:</strong> {{ employee.gender }}</li>
+                                <li class="list-group-item"><strong>E-mail Id:</strong> {{ employee.email }}</li>
+                                <li class="list-group-item"><strong>Address:</strong> {{ employee.address }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="text-light">Work Details</h3>
+                            <ul class="list-group">
+                                <li class="list-group-item"><strong>ID:</strong> {{ employee.id }}</li>
+                                <li class="list-group-item"><strong>Date Of Joining:</strong> {{ employee.doj }}</li>
+                                <li class="list-group-item"><strong>Designation:</strong> {{ employee.designation }}</li>
+                                <li class="list-group-item"><strong>Project Name:</strong> {{ employee.projectName }}</li>
+                                <li class="list-group-item"><strong>Location:</strong> {{ employee.location }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!employee" class="alert alert-info">
+                    <p>No employee details available.</p>
+                </div>
+                
+              
+  
+            </div>
+        </div>
+    </div>
+  </div>
+  
+          
+  
+  
+  
+  
+  
+  

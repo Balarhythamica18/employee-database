@@ -1,0 +1,101 @@
+<button class="btn btn-warning ms-2 me-2"  data-bs-toggle="modal"   [attr.data-bs-target]="'#editModal' + (employee?.id)" title="edit"><i
+    class="fa fa-edit"></i></button>
+        <div class="modal fade" id="editModal{{employee?.id}}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg text-light d-flex justify-content-between align-items-center">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+                        <button type="button" class="btn-close bg-light p-3" data-bs-dismiss="modal" aria-label="Close"></button></div>
+    
+        <div class="center p-0">
+          <form autocomplete="off">
+            <div class="form-group">
+              <label>Id : </label>
+              <input class="bg bg-light"   [(ngModel)]="editedEmployee.id" type="text" id="id" name="id" placeholder="Enter Your id *" readonly (input)="changesMade = true">
+            </div>
+            
+            <div class="form-group">
+              <label>Name : </label>
+              <input [(ngModel)]="editedEmployee.name" type="text" id="name" name="name" placeholder="Enter Your Name *"    required (input)="changesMade = true" #nameField="ngModel">
+              <div class="form-text text-danger fw-bold fs-6" *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)">
+                *Name is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Date Of Birth : </label>
+              <input [(ngModel)]="editedEmployee.dob" type="date" id="dob" name="dob" [max]="getMaxDate()" required (input)="changesMade = true" #dobField="ngModel">
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="dobField.invalid && (dobField.dirty || dobField.touched)">
+                *Date of Birth is Required.
+              </div>
+            </div>
+            
+            <div class="form-group" id="gender">
+              <label class="gender">Gender:</label>
+              <input type="radio" name="gender" value="male" [(ngModel)]="editedEmployee.gender" required (input)="changesMade = true" #genderField="ngModel">Male
+              <input type="radio" name="gender" value="female" [(ngModel)]="editedEmployee.gender" required (input)="changesMade = true" #genderField="ngModel">Female
+              <input type="radio" name="gender" value="other" [(ngModel)]="editedEmployee.gender" required (input)="changesMade = true" #genderField="ngModel">Other
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="genderField.invalid && (genderField.dirty || genderField.touched)">
+            </div>
+            
+            <div class="form-group">
+              <label>E-mail : </label>
+              <input [(ngModel)]="editedEmployee.email" type="text" id="email" name="email" placeholder="Enter Your E-mail Id *" required (input)="changesMade = true" #emailField="ngModel">
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
+                *Email is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Address : </label>
+              <textarea [(ngModel)]="editedEmployee.address" id="address" name="address" placeholder="Enter Your Address *"    required (input)="changesMade = true" #addressField="ngModel"></textarea>
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="addressField.invalid && (addressField.dirty || addressField.touched)">
+                *Address is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Date Of Joining : </label>
+              <input [(ngModel)]="editedEmployee.doj" type="date" id="doj" name="doj" [min]="getCurrentDate()" required (input)="changesMade = true" #dojField="ngModel">
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="dojField.invalid && (dojField.dirty || dojField.touched)">
+                *Date of Joining is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Designation : </label>
+              <select [(ngModel)]="editedEmployee.designation" id="designation" name="designation" placeholder="Select Your Designation *" required (input)="changesMade = true" #designationField="ngModel">
+                <option value="Python Developer">Python Developer</option>
+                <option value="UI Developer">UI Developer</option>
+                <option value="Java Developer">Java Developer</option>
+              </select>
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="designationField.invalid && (designationField.dirty || designationField.touched)">
+                *Designation is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Project Name : </label>
+              <input [(ngModel)]="editedEmployee.projectName" type="text" id="projectName" name="projectName"  placeholder="Enter Your Project Name *" required (input)="changesMade = true" #projectNameField="ngModel">
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="projectNameField.invalid && (projectNameField.dirty || projectNameField.touched)">
+                *Project Name is Required.
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>Location : </label>
+              <input [(ngModel)]="editedEmployee.location" type="text" id="location" name="location" placeholder="Enter Your Location *"   required (input)="changesMade = true" #locationField="ngModel">
+              <div class="form-text text-danger  fw-bold fs-6" *ngIf="locationField.invalid && (locationField.dirty || locationField.touched)">
+                *Location is Required.
+              </div>
+            </div> 
+            </div>
+            </form>   
+        </div>
+         <div class="p-2 text-end">
+          <button (click)="updateEmployee()" data-bs-dismiss="modal" type="submit" class="btn bg text-light p-2 ms-2" [disabled]="!changesMade || editForm.invalid || !formComplete()">Update</button>
+          
+  
+        </div>
+    
+      
